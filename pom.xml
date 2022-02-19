@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>matsim-cba</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>15</maven.compiler.source>
+        <maven.compiler.target>15</maven.compiler.target>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+        <!--
+        <repository>
+            <id>matsim</id>
+            <url>https://repo.matsim.org/repository/matsim</url>
+        </repository>
+
+        <repository>
+            <id>osgeo</id>
+            <name>Geotools repository</name>
+            <url>https://repo.osgeo.org/repository/release</url>
+        </repository>
+
+        <repository>
+            <id>ojo-snapshots</id>
+            <url>http://oss.jfrog.org/libs-snapshot</url>
+        </repository>
+
+        <repository>
+            <id>de.topobyte</id>
+            <url>https://mvn.topobyte.de</url>
+        </repository>
+
+        <repository>
+            <id>com.slimjars.trove4j</id>
+            <url>https://mvn.slimjars.com</url>
+        </repository>
+
+        <repository>
+            <id>SBB</id>
+            <url>https://schweizerischebundesbahnen.bintray.com/simba.mvn</url>
+        </repository>
+        -->
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.github.matsim-scenarios</groupId>
+            <artifactId>matsim-berlin</artifactId>
+            <version>5.5.x-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.MATSimToCBA</groupId>
+            <artifactId>matsim-cba</artifactId>
+            <version>master-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.2.2</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <outputFile>${project.basedir}/jars/${project.build.finalName}.jar</outputFile>
+                            <transformers>
+                                <!-- This bit sets the main class for the executable jar as you otherwise would with the assembly plugin -->
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <manifestEntries>
+                                        <Main-Class>org.matsim.run.RunBerlinScenarioWithCba</Main-Class>
+                                        <Specification-Vendor>org.matsim</Specification-Vendor>
+                                        <Implementation-Vendor>org.matsim</Implementation-Vendor>
+                                        <Implementation-Version>${project.version}</Implementation-Version>
+                                    </manifestEntries>
+                                </transformer>
+                                <!-- This bit merges the various GeoTools META-INF/services files         -->
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+                            </transformers>
+                            <filters>
+                                <filter>
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/*.SF</exclude>
+                                        <exclude>META-INF/*.DSA</exclude>
+                                        <exclude>META-INF/*.RSA</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>DRT-CBA</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <outputFile>${project.basedir}/jars/${project.build.finalName}-drt.jar</outputFile>
+                            <transformers>
+                                <!-- This bit sets the main class for the executable jar as you otherwise would with the assembly plugin -->
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <manifestEntries>
+                                        <Main-Class>org.matsim.run.drt.RunDrtOpenBerlinScenarioWithCba</Main-Class>
+                                        <Specification-Vendor>org.matsim</Specification-Vendor>
+                                        <Implementation-Vendor>org.matsim</Implementation-Vendor>
+                                        <Implementation-Version>${project.version}</Implementation-Version>
+                                    </manifestEntries>
+                                </transformer>
+                                <!-- This bit merges the various GeoTools META-INF/services files         -->
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+                            </transformers>
+                            <filters>
+                                <filter>
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/*.SF</exclude>
+                                        <exclude>META-INF/*.DSA</exclude>
+                                        <exclude>META-INF/*.RSA</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
