@@ -61,7 +61,7 @@
         <dependency>
             <groupId>com.github.MATSimToCBA</groupId>
             <artifactId>matsim-cba</artifactId>
-            <version>master-SNAPSHOT</version>
+            <version>4a8779a3fe</version>
         </dependency>
     </dependencies>
 

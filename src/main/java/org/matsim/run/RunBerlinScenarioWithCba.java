@@ -7,7 +7,6 @@ import org.matsim.contrib.cba.CbaModule;
 import org.matsim.core.config.Config;
 import org.matsim.core.controler.Controler;
 
-
 public class RunBerlinScenarioWithCba {
 
     private static final Logger log = Logger.getLogger(RunBerlinScenarioWithCba.class);
