@@ -27,7 +27,7 @@
 		<param name="lastIteration" value="1" />
 		<param name="overwriteFiles" value="failIfDirectoryExists" />
 		<param name="runId" value="berlin-drt-v5.5-1pct" />
-		<param name="outputDirectory" value="./scenarios/berlin-v5.5-1pct/output-berlin-drt-v5.5-cba-pt-ag-pv-drt-fr1-1pct" />
+		<param name="outputDirectory" value="./scenarios/berlin-v5.5-1pct/output-berlin-drt-stopbased-v5.5-cba-pt-ag-pv-drt-fr1-1pct" />
 		<param name="writeEventsInterval" value="50" />
 		<param name="writePlansInterval" value="50" />
 	</module>
@@ -203,13 +203,13 @@
 			<!-- Number of threads used for parallel evaluation of request insertion into existing schedules. Scales well up to 4, due to path data provision, the most computationally intensive part, using up to 4 threads. Default value is 'min(4, no. of cores available to JVM)' -->
 			<param name="numberOfThreads" value="8" />
 			<!-- Operational Scheme, either of door2door, stopbased or serviceAreaBased. door2door by default -->
-			<param name="operationalScheme" value="serviceAreaBased" />
+			<param name="operationalScheme" value="stopbased" />
 			<!-- If true, the max travel and wait times of a submitted request are considered hard constraints (the request gets rejected if one of the constraints is violated). If false, the max travel and wait times are considered soft constraints (insertion of a request that violates one of the constraints is allowed, but its cost is increased by additional penalty to make it relatively less attractive). Penalisation of insertions can be customised by injecting a customised InsertionCostCalculator.PenaltyCalculator -->
 			<param name="rejectRequestIfMaxWaitOrTravelTimeViolated" value="false" />
 			<!-- Bus stop duration. Must be positive. -->
 			<param name="stopDuration" value="60.0"/>
 			<!-- Stop locations file (transit schedule format, but without lines) for DRT stops. Used only for the stopbased mode -->
-			<param name="transitStopFile" value="null"/>
+			<param name="transitStopFile" value="https://svn.vsp.tu-berlin.de/repos/public-svn/matsim/scenarios/countries/de/berlin/berlin-v5.5-10pct/input/berlin-v5.5-transit-schedule.xml.gz"/>
 			<!-- Limit the operation of vehicles to links (of the 'dvrp_routing' network) with 'allowedModes' containing this 'mode'. For backward compatibility, the value is set to false by default - this means that the vehicles are allowed to operate on all links of the 'dvrp_routing' network. The 'dvrp_routing' is defined by DvrpConfigGroup.networkModes) -->
 			<param name="useModeFilteredSubnetwork" value="drt"/>
 			<!-- An XML file specifying the vehicle fleet. The file format according to dvrp_vehicles_v1.dtd -->
