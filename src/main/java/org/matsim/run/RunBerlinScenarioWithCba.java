@@ -6,6 +6,9 @@ import org.matsim.contrib.cba.CbaConfigGroup;
 import org.matsim.contrib.cba.CbaModule;
 import org.matsim.core.config.Config;
 import org.matsim.core.controler.Controler;
+import org.matsim.run.utils.ResumeSimulationFromLastPlans;
+
+
 
 public class RunBerlinScenarioWithCba {
 
@@ -15,16 +18,24 @@ public class RunBerlinScenarioWithCba {
         for (String arg : args) {
             log.info( arg );
         }
-        if (args.length==0 ) {
-            args = new String[] {"scenarios/berlin-v5.5-1pct/input/berlin-v5.5-cba-pt-ag-pv-fr1-1pct.config.xml"}  ;
+        String configPath = "scenarios/berlin-v5.5-1pct/input/berlin-v5.5-cba-pt-ag-pv-fr1-1pct.config.xml";
+        boolean resumeSimulation = false;
+        if (args.length>=1 ) {
+            configPath = args[0];
         }
-        Config config = prepareConfig(args);
+        if(args.length>=2) {
+            resumeSimulation = Boolean.parseBoolean(args[1]);
+        }
+        Config config = prepareConfig(configPath);
+        if(resumeSimulation) {
+            ResumeSimulationFromLastPlans.resumeSimulationFromLastPlans(config);
+        }
         Scenario scenario = prepareScenario(config);
         Controler controler = prepareControler(scenario);
         controler.run();
     }
-    public static Config prepareConfig(String[] args) {
-        return RunBerlinScenario.prepareConfig(args, new CbaConfigGroup());
+    public static Config prepareConfig(String configPath) {
+        return RunBerlinScenario.prepareConfig(new String[]{configPath}, new CbaConfigGroup());
     }
 
     public static Scenario prepareScenario(Config config) {
@@ -36,5 +47,4 @@ public class RunBerlinScenarioWithCba {
         controler.addOverridingModule(new CbaModule());
         return controler;
     }
-
 }
