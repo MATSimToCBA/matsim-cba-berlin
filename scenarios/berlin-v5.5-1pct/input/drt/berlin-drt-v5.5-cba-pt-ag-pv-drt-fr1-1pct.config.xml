@@ -10,6 +10,7 @@
 		<parameterset type="ptAnalyzer">
 			<param name="mode" value="pt" />
 			<param name="tripsSheetName" value="Trips_pt_S1"/>
+			<param name="vehiclesSheetName" value="Vehicles_pt_S1" />
 		</parameterset>
 		<parameterset type="agentsAnalyzer">
 			<param name="scoresSheetName" value="scores_S1"/>
