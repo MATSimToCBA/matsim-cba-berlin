@@ -1,6 +1,5 @@
 package org.matsim.run.drt;
 
-import org.apache.log4j.Logger;
 import org.matsim.api.core.v01.Scenario;
 import org.matsim.api.core.v01.population.Person;
 import org.matsim.contrib.cba.CbaConfigGroup;
@@ -48,8 +47,10 @@ public class RunDrtOpenBerlinScenarioWithCba {
 
     public static Scenario prepareScenario(Config config, boolean drtSpeedUp) {
         Scenario scenario = RunDrtOpenBerlinScenario.prepareScenario(config);
-        for (Person person : scenario.getPopulation().getPersons().values()) {
-            person.getPlans().removeIf((plan) -> plan != person.getSelectedPlan());
+        if(drtSpeedUp) {
+            for (Person person : scenario.getPopulation().getPersons().values()) {
+                person.getPlans().removeIf((plan) -> plan != person.getSelectedPlan());
+            }
         }
         return scenario;
     }
