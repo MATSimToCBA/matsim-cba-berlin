@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 import org.matsim.api.core.v01.Scenario;
 import org.matsim.contrib.cba.CbaConfigGroup;
 import org.matsim.contrib.cba.CbaModule;
+import org.matsim.core.config.CommandLine;
 import org.matsim.core.config.Config;
 import org.matsim.core.controler.Controler;
 import org.matsim.run.utils.ResumeSimulationFromLastPlans;
@@ -14,19 +15,15 @@ public class RunBerlinScenarioWithCba {
 
     private static final Logger log = Logger.getLogger(RunBerlinScenarioWithCba.class);
 
-    public static void main(String[] args) {
-        for (String arg : args) {
-            log.info( arg );
-        }
-        String configPath = "scenarios/berlin-v5.5-1pct/input/berlin-v5.5-cba-pt-ag-pv-fr1-1pct.config.xml";
-        boolean resumeSimulation = false;
-        if (args.length>=1 ) {
-            configPath = args[0];
-        }
-        if(args.length>=2) {
-            resumeSimulation = Boolean.parseBoolean(args[1]);
-        }
+    public static void main(String[] args) throws CommandLine.ConfigurationException {
+        CommandLine cmd = new CommandLine.Builder(args)
+                .requireOptions("config-path")
+                .allowOptions("resume-simulation")
+                .build();
+        String configPath = cmd.getOptionStrict("config-path");
+        boolean resumeSimulation = cmd.hasOption("resume-simulation") && Boolean.parseBoolean(cmd.getOptionStrict("resume-simulation"));
         Config config = prepareConfig(configPath);
+        cmd.applyConfiguration(config);
         if(resumeSimulation) {
             ResumeSimulationFromLastPlans.resumeSimulationFromLastPlans(config);
         }
