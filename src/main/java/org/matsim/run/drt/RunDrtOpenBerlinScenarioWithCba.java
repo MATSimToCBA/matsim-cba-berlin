@@ -15,6 +15,10 @@ import org.matsim.core.config.CommandLine;
 
 public class RunDrtOpenBerlinScenarioWithCba {
 
+    /**
+     * @param args
+     * @throws CommandLine.ConfigurationException
+     */
     public static void main(String[] args) throws CommandLine.ConfigurationException {
         CommandLine cmd = new CommandLine.Builder(args)
                 .requireOptions("config-path")
