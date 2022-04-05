@@ -16,7 +16,7 @@ import org.matsim.core.config.CommandLine;
 public class RunDrtOpenBerlinScenarioWithCba {
 
     /**
-     * @param args
+     * @param args : Expects at least a config-path argument. Also boolean arguments drt-speed-up and resume-simulation
      * @throws CommandLine.ConfigurationException
      */
     public static void main(String[] args) throws CommandLine.ConfigurationException {
