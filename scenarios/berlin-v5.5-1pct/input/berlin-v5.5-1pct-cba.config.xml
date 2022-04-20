@@ -15,8 +15,16 @@
 			<param name="tripsSheetName" value="Trips_PV_S1"/>
 			<param name="ignoredActivityTypes" value="DrtStay,DrtBusStop" />
 		</parameterset>
-		<parameterset type="walkAnalyzer">
+		<parameterset type="genericAnalyzer">
 			<param name="tripsSheetName" value="Trips_walk"/>
+			<param name="mode" value="walk"/>
+		</parameterset>
+		<parameterset type="genericAnalyzer">
+			<param name="tripsSheetName" value="Trips_bicycle"/>
+			<param name="mode" value="bicycle"/>
+		</parameterset>
+		<parameterset type="rideAnalyzer">
+			<param name="tripsSheetName" value="Trips_ride"/>
 		</parameterset>
 	</module>
 	<module name="TimeAllocationMutator" >
