@@ -4,19 +4,27 @@
 	<module name="cba">
 		<parameterset type="ptAnalyzer">
 			<param name="mode" value="pt" />
-			<param name="tripsSheetName" value="Trips_pt_S1"/>
-			<param name="vehiclesSheetName" value="Vehicles_pt_S1"/>
+			<param name="tripsSheetName" value="Trips_pt"/>
+			<param name="vehiclesSheetName" value="Vehicles_pt"/>
 		</parameterset>
 		<parameterset type="agentsAnalyzer">
-			<param name="scoresSheetName" value="scores_S1"/>
+			<param name="scoresSheetName" value="scores"/>
 		</parameterset>
 		<parameterset type="privateVehiclesAnalyzer">
 			<param name="modes" value="car" />
-			<param name="tripsSheetName" value="Trips_PV_S1"/>
+			<param name="tripsSheetName" value="Trips_pv"/>
 			<param name="ignoredActivityTypes" value="DrtStay,DrtBusStop" />
 		</parameterset>
-		<parameterset type="walkAnalyzer">
+		<parameterset type="genericAnalyzer">
 			<param name="tripsSheetName" value="Trips_walk"/>
+			<param name="mode" value="walk"/>
+		</parameterset>
+		<parameterset type="genericAnalyzer">
+			<param name="tripsSheetName" value="Trips_bicycle"/>
+			<param name="mode" value="bicycle"/>
+		</parameterset>
+		<parameterset type="rideAnalyzer">
+			<param name="tripsSheetName" value="Trips_ride"/>
 		</parameterset>
 	</module>
 	<module name="TimeAllocationMutator" >
