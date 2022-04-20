@@ -39,7 +39,7 @@
 		<param name="lastIteration" value="350" />
 		<param name="overwriteFiles" value="failIfDirectoryExists" />
 		<param name="runId" value="berlin-v5.5-10pct" />
-		<param name="outputDirectory" value="outputs/drt_V0" />
+		<param name="outputDirectory" value="outputs/drt_V5" />
 		<param name="writeEventsInterval" value="50" />
 		<param name="writePlansInterval" value="50" />
 	</module>
@@ -215,7 +215,7 @@
 			<!-- Number of threads used for parallel evaluation of request insertion into existing schedules. Scales well up to 4, due to path data provision, the most computationally intensive part, using up to 4 threads. Default value is 'min(4, no. of cores available to JVM)' -->
 			<param name="numberOfThreads" value="8" />
 			<!-- Operational Scheme, either of door2door, stopbased or serviceAreaBased. door2door by default -->
-			<param name="operationalScheme" value="serviceAreaBased" />
+			<param name="operationalScheme" value="stopbased" />
 			<!-- If true, the max travel and wait times of a submitted request are considered hard constraints (the request gets rejected if one of the constraints is violated). If false, the max travel and wait times are considered soft constraints (insertion of a request that violates one of the constraints is allowed, but its cost is increased by additional penalty to make it relatively less attractive). Penalisation of insertions can be customised by injecting a customised InsertionCostCalculator.PenaltyCalculator -->
 			<param name="rejectRequestIfMaxWaitOrTravelTimeViolated" value="false" />
 			<!-- Bus stop duration. Must be positive. -->
@@ -233,11 +233,11 @@
 				<!-- Basefare per Trip (fare = positive value) -->
 				<param name="basefare" value="0.0"/>
 				<!-- Minimum fare per trip (paid instead of the sum of base, time and distance fare if that sum would be lower than the minimum fare, fee = positive value). -->
-				<param name="minFarePerTrip" value="2.0"/>
+				<param name="minFarePerTrip" value="0.0"/>
 				<!-- Daily subscription fee (fee = positive value) -->
 				<param name="dailySubscriptionFee" value="0.0"/>
 				<!-- drt fare per meter (fee = positive value) -->
-				<param name="distanceFare_m" value="0.00035"/>
+				<param name="distanceFare_m" value="0.0000"/>
 				<!-- drt fare per hour (fee = positive value) -->
 				<param name="timeFare_h" value="0.0"/>
 			</parameterset>

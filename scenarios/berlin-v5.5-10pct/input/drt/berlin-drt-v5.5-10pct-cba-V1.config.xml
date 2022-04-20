@@ -36,10 +36,10 @@
 		<param name="mutationRange" value="7200.0" />
 	</module>
 	<module name="controler" >
-		<param name="lastIteration" value="500" />
+		<param name="lastIteration" value="350" />
 		<param name="overwriteFiles" value="failIfDirectoryExists" />
 		<param name="runId" value="berlin-v5.5-10pct" />
-		<param name="outputDirectory" value="/gpfs/workdir/chouakit/scenarios/berlin-v5.5-10pct/berlin-drt-v5.5-cba-pt-ag-pv-drt-fr1-10pct-modeConstants1" />
+		<param name="outputDirectory" value="outputs/drt_V1" />
 		<param name="writeEventsInterval" value="50" />
 		<param name="writePlansInterval" value="50" />
 	</module>
