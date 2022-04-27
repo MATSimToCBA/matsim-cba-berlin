@@ -136,7 +136,7 @@
 			<param name="marginalUtilityOfMoney" value="0.6" />
 			<parameterset type="modeParams" >
 				<param name="constant" value="-1.0" />
-				<param name="marginalUtilityOfTraveling_util_hr" value="-6.0" />
+				<param name="marginalUtilityOfTraveling_util_hr" value="0.0" />
 				<param name="mode" value="car" />
 				<param name="monetaryDistanceRate" value="-0.0002" />
 				<param name="dailyMonetaryConstant" value="-5.3" />
