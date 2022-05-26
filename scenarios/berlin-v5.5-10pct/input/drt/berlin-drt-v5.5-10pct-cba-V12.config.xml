@@ -18,7 +18,7 @@
 		<parameterset type="privateVehiclesAnalyzer">
 			<param name="modes" value="car" />
 			<param name="tripsSheetName" value="Trips_pv"/>
-			<param name="ignoredActivityTypes" value="DrtStay,DrtBusStop" />
+			<param name="ignoredActivityTypes" value="DrtStay,DrtBusStop,BeforeVrpSchedule,AfterVrpSchedule" />
 		</parameterset>
 		<parameterset type="genericAnalyzer">
 			<param name="tripsSheetName" value="Trips_walk"/>
@@ -36,10 +36,10 @@
 		<param name="mutationRange" value="7200.0" />
 	</module>
 	<module name="controler" >
-		<param name="lastIteration" value="500" />
+		<param name="lastIteration" value="350" />
 		<param name="overwriteFiles" value="failIfDirectoryExists" />
-		<param name="runId" value="berlin-drt-v5.5-1pct" />
-		<param name="outputDirectory" value="./scenarios/berlin-v5.5-1pct/output-berlin-drt-v5.5-1pct" />
+		<param name="runId" value="berlin-v5.5-10pct" />
+		<param name="outputDirectory" value="outputs/drt_V0" />
 		<param name="writeEventsInterval" value="50" />
 		<param name="writePlansInterval" value="50" />
 	</module>
@@ -55,7 +55,7 @@
 		<param name="inputNetworkFile" value="https://svn.vsp.tu-berlin.de/repos/public-svn/matsim/scenarios/countries/de/berlin/berlin-v5.5-10pct/input/berlin-v5.5-network.xml.gz" />
 	</module>
 	<module name="plans" >
-		<param name="inputPlansFile" value="https://svn.vsp.tu-berlin.de/repos/public-svn/matsim/scenarios/countries/de/berlin/berlin-v5.5-1pct/input/berlin-v5.5-1pct.plans.xml.gz" />
+		<param name="inputPlansFile" value="https://svn.vsp.tu-berlin.de/repos/public-svn/matsim/scenarios/countries/de/berlin/berlin-v5.5-10pct/input/berlin-v5.5-10pct.plans.xml.gz" />
 		<param name="removingUnnecessaryPlanAttributes" value="false" />
 	</module>
 	<module name="vehicles" >
@@ -82,11 +82,11 @@
 	<module name="qsim" >
 		<param name="simStarttimeInterpretation" value="onlyUseStarttime" />
 		<param name="endTime" value="36:00:00" />
-		<param name="flowCapacityFactor" value="0.015" />
+		<param name="flowCapacityFactor" value="0.1" />
 		<param name="mainMode" value="car,freight" />
 		<param name="numberOfThreads" value="8" />
 		<param name="startTime" value="00:00:00" />
-		<param name="storageCapacityFactor" value="0.015" />
+		<param name="storageCapacityFactor" value="0.1" />
 		<param name="stuckTime" value="30.0" />
 		<param name="trafficDynamics" value="kinematicWaves" />
 		<param name="vehiclesSource" value="modeVehicleTypesFromVehiclesData" />
@@ -180,7 +180,7 @@
 			</parameterset>
 			<parameterset type="modeParams" >
 				<param name="constant" value="-0.1" />
-				<param name="marginalUtilityOfTraveling_util_hr" value="0.0" />
+				<param name="marginalUtilityOfTraveling_util_hr" value="-0.0" />
 				<param name="mode" value="drt" />
 			</parameterset>
 		</parameterset>
@@ -215,7 +215,7 @@
 			<!-- Number of threads used for parallel evaluation of request insertion into existing schedules. Scales well up to 4, due to path data provision, the most computationally intensive part, using up to 4 threads. Default value is 'min(4, no. of cores available to JVM)' -->
 			<param name="numberOfThreads" value="8" />
 			<!-- Operational Scheme, either of door2door, stopbased or serviceAreaBased. door2door by default -->
-			<param name="operationalScheme" value="door2door" />
+			<param name="operationalScheme" value="serviceAreaBased" />
 			<!-- If true, the max travel and wait times of a submitted request are considered hard constraints (the request gets rejected if one of the constraints is violated). If false, the max travel and wait times are considered soft constraints (insertion of a request that violates one of the constraints is allowed, but its cost is increased by additional penalty to make it relatively less attractive). Penalisation of insertions can be customised by injecting a customised InsertionCostCalculator.PenaltyCalculator -->
 			<param name="rejectRequestIfMaxWaitOrTravelTimeViolated" value="false" />
 			<!-- Bus stop duration. Must be positive. -->
@@ -226,7 +226,7 @@
 			<param name="useModeFilteredSubnetwork" value="drt"/>
 			<!-- An XML file specifying the vehicle fleet. The file format according to dvrp_vehicles_v1.dtd -->
 			<param name="vehiclesFile"
-				   value="https://svn.vsp.tu-berlin.de/repos/public-svn/matsim/scenarios/countries/de/berlin/projects/avoev/berlin-drt-v5.5-10pct/input/berlin-drt-v5.5.drt-1000vehicles-4seats.xml.gz"/>
+				   value="https://svn.vsp.tu-berlin.de/repos/public-svn/matsim/scenarios/countries/de/berlin/projects/avoev/berlin-drt-v5.5-10pct/input/berlin-drt-v5.5.drt-10000vehicles-4seats.xml.gz"/>
 			<!-- Writes out detailed DRT customer stats in each iteration. True by default. -->
 			<param name="writeDetailedCustomerStats" value="true"/>
 			<parameterset type="drtfare">
